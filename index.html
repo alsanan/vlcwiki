@@ -1,0 +1,216 @@
+<script defer src="wiki.js"></script>
+
+<div class="main">
+
+    <h1 class="logo"><span id="letrav">v</span><span id="letral">l</span><span id="letrac">c</span><span class="logoend">.wiki</span></h1>
+    <p> <!--•••-->
+        <!--uɐuɐsןɐ suoɟןɐ-->
+        <!--uɐuɐɟןs- -suoɟןɐ--> <!--uɐuɐsןɐ-->
+        <!--<span style="font-size:0.8em;">ן</span>ɐ--></p>
+
+</div>
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&display=swap );
+    /*#letrav{ color: #b15a5a; }
+    #letral{ color: #cc8353; transform: rotate(25deg) translatex(-10px); display: inline-block; }
+    #letrac{ color: #8fad6e; transform: translateX(-80px); display: inline-block; }
+    */
+    .logo {
+        font-family: "Yanone Kaffeesatz", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-weight: 500;
+        font-size: 10em !important;
+        letter-spacing: -10px !important;
+        _position:absolute;
+        _top:50vh;
+        margin:-13% 0 0 5%;
+        color:white;
+        text-shadow: 0 0 4px black;
+    }
+    
+    .logoend {
+        color: #bbb;
+        font-weight: 300;
+        font-size: 0.3em;
+        font-family: consolas,monospace;
+        letter-spacing: -10px;
+    }
+    
+    body,
+    input,
+    select,
+    textarea,
+    #header p {
+        background-color: white !important;
+        color: #000;
+        font-family: "Segoe UI", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+        font-size: 1.5em;
+        font-weight: 300 !important;
+    }
+    p { 
+        position:absolute; 
+        top:45vh; 
+        margin-left:20vw;
+    }
+    
+    #main {
+        height: 100%;
+        left: 0;
+        -position: fixed;
+        /* aparece un "?" */
+        text-align: center;
+        top: 0;
+        width: 100%;
+    }
+    
+    #main:before {
+        content: '';
+        display: inline-block;
+        height: 130%;
+        vertical-align: middle;
+    }
+    
+    #header {
+        cursor: default;
+        display: inline-block;
+        box-shadow: none !important;
+    }
+    
+    #header h1 {
+        font-size: 8em;
+        letter-spacing: -0.035em;
+        line-height: 0.05em;
+    }
+    
+    header,
+    footer,
+    #menu { display: none; }
+    
+    body {
+        margin:0;
+        padding: 1rem;
+        border-top: 48vh solid black;
+        _background: linear-gradient(to right, #b15a5a 0%, #b15a5a 24%, #cc8353 25%, #cc8353 49%, #8fad6e 50%, #8fad6e 74%, #6e8fad 75%, #6e8eac 100%) center 47vh/100% 1.5vh no-repeat;
+        background: linear-gradient(to right, #000, #000 0%, #b15a5a 24%, #cc8353 50%, #8fad6e 74%, #fff 100%) center 46.5vh/100% 1.5rem no-repeat;
+    }
+    body::after { background:inherit; }
+    /*.eapp-telegram-chat-root-layout-component [role="button"] + div, .eapp-telegram-chat-root-layout-component a[target="_blank"] {display:none !important; }*/
+    
+    #chat {
+        position: fixed;
+        bottom: 1em;
+        right: 1em;
+        padding: 1em;
+        border-radius: 1em;
+        box-shadow: 0 5px 6px gray;
+        background:white;
+    }
+    
+    #chat h2 {
+        margin: 0;
+    }
+    
+    #chat li {
+        background-color: #bbb;
+        list-style: none;
+        padding: 0 1em;
+        margin: 0.5em 0;
+        border-radius: 1em;
+        margin-right: 2em;
+    }
+    
+    #chat .admin {
+        background-color: #999;
+        margin-left: 2em;
+        margin-right: 0;
+        text-align: right;
+    }
+    
+    #char .admin:before {
+        content: "alsanan: ";
+    }
+    
+    #chat textarea {
+        border-radius: 0.5em;
+        resize: none;
+        outline: 0;
+    }
+</style>
+
+<!--script src="https://dripform.ga/js/dripform.js" tguser="141784119" > </script-->
+
+<div id="chat">
+    <h2>chat with uɐuɐsןɐ</h2>
+    <div id="dialog"></div>
+    <textarea autofocus onkeypress="if(event.keyCode==13) { event.stopPropagation(); send();}">test</textarea>
+    <!--br/>
+<button onclick="return send()" >enviar</button-->
+</div>
+<!-- https://github.com/mattmezza/vue-beautiful-chat
+el codi del bot ha de enviar la info a la pagina. puc guardar allò rebut en [chat_id].txt
+
+funcionament. el bot fa d'intermediari entre la web i el xat de l'admmin. El id del admin és fixe i també el del xat amb ell.
+quan l'usuari introdueix un text, el mostra al xat directament (fun send) i fa un sendMessage.
+quan l'admin contesta, ho rep el bot, que d'alguna manera hauria d'avisar al chat per actualitzar la resposta. Això ho haurem de fer amb consultes repetides.
+l'identificador del chat és aleatori i es posa en una cookie.
+
+token @bot4chatbot 801777186:AAHtciMcW-6rlr9jt7o5sAfVF27-j14rJBs
+t.me/Bot4chatbot
+
+-->
+<script>
+    if (location.search.substr(1, 4) == 'http') location = '/r/' + location.search;
+    var id = null;
+    var chat = 141784119;
+    //var chat= 801777186;
+    var chatgen = null;
+
+    function getCookie() {
+        var v = document.cookie.match('(^|;) ?bot4chat=([^;]*)(;|$)');
+        return v ? v[2] : null;
+    }
+
+    function setCookie(value, days = 7) {
+        var d = new Date;
+        d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
+        document.cookie = "bot4chat=" + value + ";path=/;expires=" + d.toGMTString();
+    }
+
+    function deleteCookie() {
+        setCookie('', -1);
+    }
+    if (!getCookie()) {
+        setCookie(Math.random().toString(36).substring(2, 8));
+    }
+    chatgen = getCookie();
+    console.log(chatgen)
+        //document.querySelector('#chat>span').innerText= chatgen;
+    function send() {
+        var txt = document.querySelector('#chat > textarea').value;
+        document.querySelector('#chat > textarea').value = '';
+        fetch('bot/log.php?save=' + chatgen + '&m=' + txt)
+            .then(function() {
+                document.querySelector('#chat > div').innerHTML += '<li>' + txt + '</li>';
+                fetch('https://api.telegram.org/bot801777186:AAHtciMcW-6rlr9jt7o5sAfVF27-j14rJBs/sendMessage?chat_id=' + chat + '&text=' + chatgen + ': ' + txt) // bot: 321312565
+                    .then(function(response) {
+                        console.log(response)
+                        get();
+                        return response.json();
+                    })
+            });
+        return false;
+    }
+
+    function get() {
+        fetch('bot/log.php?load=' + chatgen)
+            .then(function(response) {
+                response.text().then(function(txt) {
+                    document.querySelector('#chat > div').innerHTML = txt;
+                });
+            })
+    }
+    var int = setInterval(get, 5000);
+    //get();
+</script>
+
+<!--button onclick="clearInterval(int)">stop refreshing</button-->

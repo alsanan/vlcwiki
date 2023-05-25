@@ -1,0 +1,44 @@
+
+img { border: 0; }
+body {background:
+url(../media/fondo.jpg) no-repeat fixed 0 0;
+}
+td, body { font-family: Trebuchet MS, Verdana,
+Arial, sans-serif; font-size: 12px; cursor: default; }
+td {
+padding: 10px; }h1 { margin-top:-24px; letter-spacing:
+-2px;font-size:18px; }* html h1 hr {
+display:none; position:relative; top:-15px; } /* TONTERIA SOLO IE */h1
+hr {
+display:none; position:relative; top:-19px; }a { color: #f40;
+text-decoration:
+underline; }a:hover { background-color:#eee; }a:visited {
+text-decoration: none; }a.external { background:
+url(images/remote.gif) no-repeat right center; padding:0 14px 0 0;
+margin:0; }a.external:hover { background: #eee
+url(images/remote2.gif) no-repeat right center; padding:0 14px 0 0; }ul
+li { list-style-type:none; background: url(images/dot.gif)
+no-repeat 0 4px; }ul li, ol li { padding-left: 11px; }.lowered {
+border-width: 1px; border-style: inset; border-color:
+#bbb; }.raised { border-width: 1px; border-style: outset;
+border-color: #bbb; }.btn { text-decoration: none; cursor: hand;
+color: #000;
+background-color: #eee; padding: 1px 4px; font-weight: bold; outline:
+0; height: 0; }.btn:hover { background-color: #ccc; }.tab
+{ margin-left: 20px; }.data {padding: 0 4px; font-size:10px;
+}.fastblock { margin-left:1%; width:98%; border-top: 1px solid
+#ccc; }.date { padding-left:16px; font-size:10px; color:#bbb;
+background: url(images/ext.gif) no-repeat 1px 4px; }.optionhead
+{ color:white; background-color:#f40; font-weight:bold; }#fastins {
+margin:5px; padding:10px; background:
+url(images/grid.gif); visibility:hidden; }#content { width:98%;
+height:99%; padding: 8px;
+}#fixed { position: fixed; top: 8px; right: 30px; padding: 2px;
+border: 1px dotted black; filter: alpha(opacity=70); -moz-opacity: .7;
+background-color: white;
+}#fixed a { text-decoration: none;
+}.transparent { filter: alpha(opacity=30); -moz-opacity: .3;}
+a {	color:#08F;}
+
+#fondo {display:none;}
+#content{opacity:1 !important; -moz-opacity:1 !important; background-color:transparent !important; color:black !important; }

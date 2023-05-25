@@ -1,0 +1,23 @@
+<details id="menu" x-data="{auth:false, menu:321, search:'', newpage:''}">
+	<summary>::wiki &nbsp;</summary>
+	<ul>
+	<li><a href="/index">index</a>
+	<li x-show="auth"><input x-model="search" type="search" placeholder="search" @keyup.enter.prevent="location='/api.php?search='+search" />
+	<li x-show="auth"><a href="/api.php?list">llistar</a> (<a href="/api.php?list=date">més nous</a>)
+	<li x-show="auth"><input x-model="newpage" type="text" placeholder="new page" @keyup.enter.prevent="location='/api.php?new='+newpage" />
+	<li x-show="auth"><a href="#" @click="document.querySelector('#menu').open=false; wiki.crypt()">encriptar</a></li>
+	<li x-show="auth"><a href="#" @click="document.querySelector('#menu').open=false; wiki.clean()">netejar de tags</a></li>	
+	<li x-show="auth"><a id="savebtn" class="disablesave" href="#" @click="if(wiki.editor)wiki.save();">guardar</a>
+	<li x-show="auth">etiquetar
+	<li x-show="!auth"><a href="#" @click="document.querySelector('#menu').open=false; wiki.doprompt()">login</a>
+	<li x-show="auth"><a href="#" @click="document.querySelector('#menu').open=false; wiki.edit(true);">editar</a>
+	<li x-show="auth"><a href="#" @click="wiki.setCookie('wiki4','');wiki.edit(false);document.querySelector('#menu').open=false;auth=false">logout</a>
+	<li x-show="auth"><a href="#" @click="location='/api.php?versions='+location.pathname.split('/').pop()">versions</a>
+	<li><input type="text" id="key" placeholder="crypt password" onkeyup="wiki.recrypt(this.value)" />
+	<li><label><input type="checkbox" @change="document.body.classList.toggle('dark')" />☀</label>
+	</ul>
+</details>
+
+<iframe style="display:none" src="/header.html" onload="top.document.querySelector('header').innerHTML=event.target.contentDocument.body.innerHTML;this.remove();" ></iframe>
+
+<iframe style="display:none" src="/footer.html" onload="top.document.querySelector('footer').innerHTML=event.target.contentDocument.body.innerHTML;this.remove();" ></iframe>
