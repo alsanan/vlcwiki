@@ -10,6 +10,5 @@
     "node": "14.x"
   },
   "dependencies": {
-    // Añade aquí cualquier otra dependencia necesaria para tu aplicación
   }
 }
