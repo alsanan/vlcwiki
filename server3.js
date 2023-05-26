@@ -109,10 +109,11 @@ console.dir(this.routes)
   start() {
     // Crear el servidor HTTP
     this.httpserver = http.createServer(this.handleRequest.bind(this));
-
+    // Obtener el puerto asignado por Heroku o usar el puerto 3000 de forma predeterminada
+    const port = process.env.PORT || 80;
     // Escuchar en el puerto 80
-    this.httpserver.listen(80, () => {
-      console.log('Servidor web iniciado en el puerto 80');
+    this.httpserver.listen(port, () => {
+      console.log('Servidor web iniciado en el puerto '+port);
     });
   }
 
